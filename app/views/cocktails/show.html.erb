@@ -1,31 +1,50 @@
-<h2>
+
+<% if @cocktail.photo.present? %>
+<div class="card-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @cocktail.photo, height: 1200, width: 1200, crop: :fill %>')">
+  <h2 class="cocktail-name">
+    <strong><%= @cocktail.name %></strong>
+  </h2>
+  <ul class="cocktail-mix">
+    <% @cocktail.doses.each do |dose| %>
+    <li>
+      <%= dose.description %> --- <%= dose.ingredient.name %>
+      <%= link_to dose_path(dose), method: :delete do %>
+      <i class='fa fa-trash'></i>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<div class="back-home-link">
+  <%= link_to 'Go back', cocktails_path %>
+</div>
+<div class="create-cocktail">
+  <%= link_to 'Edit cocktail mix', new_cocktail_dose_path(@cocktail)  %>
+</div>
+
+<% else %>
+<h2 class="cocktail-name">
   <strong><%= @cocktail.name %></strong>
 </h2>
-
-
-
-
-      <div class="card-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url(<%= image_path "espresso_martini.jpg" %>);"">
-      </div>
-
-
-
-
-<ul>
+<ul class="cocktail-mix">
   <% @cocktail.doses.each do |dose| %>
   <li>
-    <%= dose.description %> of <%= dose.ingredient.name %>
-    <%= link_to dose_path(dose), class: 'btn btn-danger btn-sm delete-btn', method: :delete do %>
-    <p>Delete</p>
+    <%= dose.description %> --- <%= dose.ingredient.name %>
+    <%= link_to dose_path(dose), method: :delete do %>
+    <i class='fa fa-trash'></i>
     <% end %>
   </li>
   <% end %>
+  <div class="back-home-link">
+    <%= link_to 'Go back', cocktails_path %>
+  </div>
+  <div class="create-cocktail">
+    <%= link_to 'Edit cocktail mix', new_cocktail_dose_path(@cocktail)  %>
+  </div>
 </ul>
+</div>
+<% end %>
 
-
-
-<%= link_to 'Back', cocktails_path %>
-<%= link_to 'Create dose', new_cocktail_dose_path(@cocktail)  %>
 
 
 
