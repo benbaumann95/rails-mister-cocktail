@@ -1,21 +1,35 @@
 <p id="notice"><%= notice %></p>
-<h1>cocktails</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
+
+<h1 class="text-center">Cocktail à la Ben</h1>
+
+</div>
+<div style="width:100%;height:0;padding-bottom:70%;position:relative;">
+  <iframe src="https://giphy.com/embed/3o7TKDhgKC52OZhV0k" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen>
+  </iframe>
+</div>
+
+<div class="container">
+  <div class="row">
     <% @cocktails.each do |cocktail| %>
-      <tr>
-        <td><%= cocktail.name %></td>
-        <td><%= link_to 'Show', cocktail %></td>
-      </tr>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url(<%= image_path "espresso_martini.jpg" %>);"">
+        <div class="card-content">
+          <div class="card-name">
+            <%= cocktail.name %>
+          </div>
+          <div class="card-show">
+            <%= link_to 'Show', cocktail %>
+          </div>
+        </div>
+
+
+        <br>
+
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New cocktail', new_cocktail_path %>
+    <%= link_to 'Create a new cocktail', new_cocktail_path %>
+  </div>
+</div>
+
 

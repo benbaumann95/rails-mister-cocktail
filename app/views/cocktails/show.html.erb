@@ -1,18 +1,32 @@
-<p>
-  <strong>Name:</strong>
-  <%= @cocktail.name %>
-</p>
+<h2>
+  <strong><%= @cocktail.name %></strong>
+</h2>
+
+
+
+
+      <div class="card-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url(<%= image_path "espresso_martini.jpg" %>);"">
+      </div>
+
+
+
 
 <ul>
   <% @cocktail.doses.each do |dose| %>
-    <li><%= dose.description %> of <%= dose.ingredient.name %></li>
-    <%= link_to dose_path(dose), class: 'btn btn-danger btn-sm', method: :delete do %>
-      <p>Delete</p>
+  <li>
+    <%= dose.description %> of <%= dose.ingredient.name %>
+    <%= link_to dose_path(dose), class: 'btn btn-danger btn-sm delete-btn', method: :delete do %>
+    <p>Delete</p>
     <% end %>
+  </li>
   <% end %>
 </ul>
 
+
+
 <%= link_to 'Back', cocktails_path %>
 <%= link_to 'Create dose', new_cocktail_dose_path(@cocktail)  %>
+
+
 
 
